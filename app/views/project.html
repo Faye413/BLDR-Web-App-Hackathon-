@@ -1,0 +1,84 @@
+<div>
+    <h2>{{project.projectData.name}}</h2>
+    <div class="divider"></div>
+    <div class="row"></div>
+    <div ng-if="project.projectData.images.length">
+      <!-- <ul class="slides">
+        <li ng-repeat="pic in project.projectData.images" class="center-align">
+            <img ng-src="{{pic}}">
+        </li>
+      </ul> -->
+      <div class="row">
+        <div ng-repeat="pic in project.projectData.images" class="col l4">
+          <img class="responsive-img" ng-src="{{pic}}">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col l6 s12">
+        <div class = "section">
+          <h4>Description</h4>
+          <div class="divider"></div>
+          <p> {{project.projectData.description}}</p>
+          <h5>Status: {{project.projectData.status}}</h5>
+          <h5>Category: {{project.projectData.category}}</h5>
+        </div>
+        <div class="divider"></div>
+        <div class = "section">
+          <div class="row valign-wrapper">
+            <div class="col s8">
+              <h4>Participants</h4>
+            </div>
+            <div class="col s4">
+              <button data-target="modal2" class="btn modal-trigger valign">Join</button>
+            </div>
+          </div>
+          <table class="striped" ng-if="project.projectData.participants.length">
+            <thead>
+              <tr>
+                <th data-field="name">Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="participant in project.projectData.participants">
+                <td>{{participant}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div ng-if="!project.projectData.participants.length">
+            <h5>No participants yet</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col l6 s12">
+        <div class="section">
+          <h4>Location</h4>
+          <div class="divider"></div>
+          <h5>{{project.projectData.location.address}}</h5>
+          <div id="map-canvas" style="height:300px"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class = "right-align">
+
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <h3 align="left">Sign Up</h3>
+                <div class="row">
+                <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="name" type="text" ng-model="project.participantToAdd">
+                        <label for="name">Name</label>
+                    </div>
+                </div>
+                </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="/#/projects/{{project.projectData._id}}" ng-click="project.addParticipant()" class=" modal-action modal-close waves-effect waves-green btn-flat">sign me up!</a>
+            </div>
+        </div>
+    </div>
+</div>
